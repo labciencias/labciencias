@@ -43,42 +43,43 @@
 
     <main class="container">
 
-      <textarea id="coleta_manual" placeholder="Digite os dados do experimento ou clique em conectar para recebe-los via bluetooth"></textarea>
+      <textarea id="coleta_manual" rows="8" placeholder="Digite os dados do experimento ou clique em conectar para recebê-los via bluetooth"></textarea>
+      <details>
+        <summary>Dados</summary>
+        <div id="tabela"></div>
+      </details>  
+      <details>
+        <summary>Visualização</summary>
+        <h4 id='equacao_regressao'></h4>
+        <div id="grafico"></div>
+        <div class="grid">
+          <label>Regressão:
+            <select id="ajuste_curva">
+              <optgroup>
+                <option>...</option>
+                <option>Linear</option>  
+                <option>Exponencial</option>    
+                <option>Logaritima</option>
+              </optgroup>
+            </select>
+          </label>
+          <label>Linealização:
+            <select id="linealizacao">
+              <optgroup>
+                <option>...</option>
+                <option>x' = x</option>  
+                <option>x' = x&#x00B2;</option>
+                <option>x' = &#8730;x</option>
+                <option>x' = log(x)</option>
+              </optgroup>
+            </select>
+          </label>
+        </div>  
+      </details>  
 
-      <button hidden id="bt_ler" >ler</button>
-
-      <div id="analizar"></div>
-
-      <div class="grid">
-        <label>Regressão:
-          <select id="ajuste_curva">
-            <optgroup>
-              <option>...</option>
-              <option>Linear</option>  
-              <option>Exponencial</option>    
-              <option>Logaritima</option>
-            </optgroup>
-          </select>
-        </label>
-        <label>Linealização:
-          <select id="linealizacao">
-            <optgroup>
-              <option>...</option>
-              <option>x' = x</option>  
-              <option>x' = x&#x00B2;</option>
-              <option>x' = &#8730;x</option>
-              <option>x' = log(x)</option>
-            </optgroup>
-          </select>
-        </label>
-      </div>  
-
-      <span id='equacao_regressao'></span>
+      
       
     </main>
 
-    <footer class="container">
-      <small> Rodapé</small>
-    </footer>
   </body>
 </html>
