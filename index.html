@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>LabCiencias APP</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.0/brython_stdlib.min.js">
+	</script>
+
+	<script src="ble.js">
+	</script>
+	<script src="app.py" type="text/python" defer></script>
+
+</head>
+
+<body onload="brython(1)">
+
+	<header class="container">
+		<nav>
+			<ul>
+				<li>
+					<h3>LabCiências</h3>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<fieldset>
+						<label for="conectar">
+                Conectar
+                <input type="checkbox" id="conectar" name="conectar" role="switch">
+              </label>
+            </fieldset>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+
+      <textarea id="coleta_manual" placeholder="Digite os dados do experimento ou clique em conectar para recebe-los via bluetooth"></textarea>
+
+      <button hidden id="bt_ler" >ler</button>
+
+      <div id="analizar"></div>
+
+      <div class="grid">
+        <label>Regressão:
+          <select id="ajuste_curva">
+            <optgroup>
+              <option>...</option>
+              <option>Linear</option>  
+              <option>Exponencial</option>    
+              <option>Logaritima</option>
+            </optgroup>
+          </select>
+        </label>
+        <label>Linealização:
+          <select id="linealizacao">
+            <optgroup>
+              <option>...</option>
+              <option>x' = x</option>  
+              <option>x' = x&#x00B2;</option>
+              <option>x' = &#8730;x</option>
+              <option>x' = log(x)</option>
+            </optgroup>
+          </select>
+        </label>
+      </div>  
+
+      <span id='equacao_regressao'></span>
+      
+    </main>
+
+    <footer class="container">
+      <small> Rodapé</small>
+    </footer>
+  </body>
+</html>
