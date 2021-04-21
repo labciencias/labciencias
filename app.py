@@ -59,13 +59,23 @@ def obter_dados():
       dados_brutos.append((float(x),float(y)))
   return dados_brutos 
 
-@bind(document["coleta_manual"],"change")
+@bind(document["coleta_manual"],"blur")
 def processar(ev):
   global dados
   dados = obter_dados()
   atualizar_grafico(dados,0)
-  document['analizar'] <= ctx
+  document['grafico'] <= ctx
+  document['tabela'].text = ''
+  document['tabela'] <= criar_tabela(dados)
+  document['tabela'].style.display = "inherit"
+  document['coleta_manual'].style.display = "none"
 
+@bind(document["tabela"],"click")
+def editar_tabela(ev):
+  global dados
+  document['tabela'].style.display = "none" 
+  document['coleta_manual'].style.display = "inherit"
+   
 @bind(document["ajuste_curva"],"change")
 def ajuste_curva(ev):
   global dados 
@@ -98,6 +108,7 @@ def ajuste_curva(ev):
 @bind(document["linealizacao"],"change")
 def ajuste_curva(ev):
   global dados 
+  document["ajuste_curva"].options[0].selected = True
   op = [opcao.index for opcao in ev.target if opcao.selected][0]
 
   if op == 2:
@@ -111,17 +122,13 @@ def ajuste_curva(ev):
   else:
     linealizacao = dados  
 
-
   atualizar_grafico(linealizacao,0)
   atualizar_grafico([],1)
   document['equacao_regressao'].text = ''
 
-
-@bind(document["bt_ler"],"click")
 def coletar_dados(ev):
   window.ble_write_value()
   window.monitorarSensor()
-
 
 @bind(document["conectar"],"click")
 def conectar(ev):
@@ -129,4 +136,3 @@ def conectar(ev):
     window.conectar_ble()
   else:
     window.desconectar_ble()
-
