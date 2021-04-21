@@ -136,3 +136,4 @@ def conectar(ev):
     window.conectar_ble()
   else:
     window.desconectar_ble()
+
